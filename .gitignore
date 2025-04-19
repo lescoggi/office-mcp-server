@@ -1,0 +1,48 @@
+# Ignore Maven target directory
+target/
+
+# Ignore Maven wrapper files
+.mvn/wrapper/maven-wrapper.jar
+
+# Ignore Eclipse project files
+.classpath
+.project
+.settings/
+
+# Ignore IntelliJ IDEA project files
+*.iml
+.idea/
+
+# Ignore NetBeans project files
+nbproject/
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore logs
+*.log
+
+# Ignore compiled class files
+*.class
+
+# Ignore temporary files
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# Ignore generated files
+*.generated
+
+# Ignore coverage reports
+coverage/
+*.lcov
+
+# Ignore build artifacts
+*.jar
+*.war
+*.ear
+
+# Ignore VS Code artifacts
+.vscode/
