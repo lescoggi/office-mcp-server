@@ -53,6 +53,22 @@ The server supports the following MCP tools and resources:
     - `filepath` - Path to the Word document.
     - `text` - Text to add.
 
+### PowerPoint Features
+
+- **Tool: Create PowerPoint Presentation**: Create a new PowerPoint presentation.
+  - **Argument**: `filepath` - Path to create the new PowerPoint presentation.
+- **Tool: Add Slide to PowerPoint**: Add a new slide to a PowerPoint presentation.
+  - **Argument**: `filepath` - Path to the PowerPoint presentation.
+- **Tool: Add Text to PowerPoint Slide**: Add text to a specific slide in a PowerPoint presentation.
+  - **Arguments**:
+    - `filepath` - Path to the PowerPoint presentation.
+    - `slideIndex` - Slide index (0-based).
+    - `text` - Text to add.
+- **Tool: Read Slide Titles from PowerPoint**: Read titles from all slides in a PowerPoint presentation.
+  - **Argument**: `filepath` - Path to the PowerPoint presentation.
+- **Tool: Get PowerPoint Slide Count**: Get the number of slides in a PowerPoint presentation.
+  - **Argument**: `filepath` - Path to the PowerPoint presentation.
+
 ## How to Debug and Run Standalone
 
 To run the Office MCP Server, follow these steps:
