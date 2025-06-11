@@ -126,4 +126,95 @@ public class ExcelFeaturesTest {
         // Get column count
         assertNotNull(excelFeatures.getExcelColumnCount(workbookPath, "Sheet1"));
     }
+
+    @Test
+    void testCreateFormattedTable() throws Exception {
+        // First create a workbook and sheet
+        excelFeatures.createExcelWorkbook(workbookPath);
+        excelFeatures.createExcelSheet(workbookPath, SHEET_NAME);
+        
+        // Test creating a formatted table with blue theme and alternating rows
+        String tableData = "Name,Age,Department;John,30,IT;Jane,25,HR;Bob,35,Finance;Alice,28,Marketing";
+        var response = excelFeatures.createFormattedTable(workbookPath, SHEET_NAME, tableData, "blue", true);
+        
+        assertNotNull(response);
+        assertTrue(Files.exists(Paths.get(workbookPath)));
+    }
+
+    @Test
+    void testCreateFormattedTableWithDifferentThemes() throws Exception {
+        // First create a workbook and sheet
+        excelFeatures.createExcelWorkbook(workbookPath);
+        excelFeatures.createExcelSheet(workbookPath, SHEET_NAME);
+        
+        String tableData = "Product,Price,Stock;Laptop,999.99,50;Mouse,29.99,100;Keyboard,79.99,75";
+        
+        // Test green theme
+        var greenResponse = excelFeatures.createFormattedTable(workbookPath, SHEET_NAME, tableData, "green", true);
+        assertNotNull(greenResponse);
+        
+        // Test orange theme  
+        var orangeResponse = excelFeatures.createFormattedTable(workbookPath, SHEET_NAME, tableData, "orange", false);
+        assertNotNull(orangeResponse);
+    }
+
+    @Test
+    void testApplyTableFormattingToExistingData() throws Exception {
+        // Create workbook and add some data first
+        excelFeatures.createExcelWorkbook(workbookPath);
+        excelFeatures.createExcelSheet(workbookPath, SHEET_NAME);
+        
+        // Add header row
+        excelFeatures.addExcelRow(workbookPath, SHEET_NAME, "Column A,Column B,Column C");
+        excelFeatures.addExcelRow(workbookPath, SHEET_NAME, "Data1,Data2,Data3");
+        excelFeatures.addExcelRow(workbookPath, SHEET_NAME, "Data4,Data5,Data6");
+        
+        // Apply table formatting to the range
+        var response = excelFeatures.applyTableFormatting(workbookPath, SHEET_NAME, "A0:C2", "blue", true);
+        assertNotNull(response);
+    }
+
+    @Test
+    void testApplyConditionalFormattingFeature() throws Exception {
+        // Create workbook and add numeric data
+        excelFeatures.createExcelWorkbook(workbookPath);
+        excelFeatures.createExcelSheet(workbookPath, SHEET_NAME);
+        
+        excelFeatures.addExcelRow(workbookPath, SHEET_NAME, "10,20,30");
+        excelFeatures.addExcelRow(workbookPath, SHEET_NAME, "40,50,60");
+        excelFeatures.addExcelRow(workbookPath, SHEET_NAME, "70,80,90");
+        
+        // Apply conditional formatting to highlight values greater than 50
+        var response = excelFeatures.applyConditionalFormatting(
+            workbookPath, SHEET_NAME, "A0:C2", "greater_than", "50", "red");
+        assertNotNull(response);
+    }
+
+    @Test
+    void testApplyCustomBordersFeature() throws Exception {
+        // Create workbook and add some data
+        excelFeatures.createExcelWorkbook(workbookPath);
+        excelFeatures.createExcelSheet(workbookPath, SHEET_NAME);
+        
+        excelFeatures.addExcelRow(workbookPath, SHEET_NAME, "Border,Test,Data");
+        excelFeatures.addExcelRow(workbookPath, SHEET_NAME, "With,Custom,Styling");
+        
+        // Apply thick blue borders
+        var response = excelFeatures.applyCustomBorders(
+            workbookPath, SHEET_NAME, "A0:C1", "thick", "blue");
+        assertNotNull(response);
+    }
+
+    @Test
+    void testFormattedTableWithoutAlternatingRows() throws Exception {
+        // Create workbook and sheet
+        excelFeatures.createExcelWorkbook(workbookPath);
+        excelFeatures.createExcelSheet(workbookPath, SHEET_NAME);
+        
+        String tableData = "Header1,Header2;Value1,Value2;Value3,Value4";
+        
+        // Create table without alternating rows
+        var response = excelFeatures.createFormattedTable(workbookPath, SHEET_NAME, tableData, "green", false);
+        assertNotNull(response);
+    }
 }
