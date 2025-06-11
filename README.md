@@ -44,6 +44,84 @@ The server supports the following MCP tools and resources:
     - `filepath` - Path to the Excel workbook.
     - `sheetName` - Name of the sheet.
 
+#### ✨ NEW: Colorful Table Formatting Features
+
+- **Tool: Create Formatted Table**: Create a new table with colorful styling and formatting.
+  - **Arguments**:
+    - `filepath` - Path to the Excel workbook.
+    - `sheetName` - Name of the sheet.
+    - `tableData` - Table data as comma-separated values, rows separated by semicolons.
+    - `theme` - Color theme: `blue`, `green`, `orange` (default: blue).
+    - `alternatingRows` - Whether to enable alternating row colors (true/false).
+  
+- **Tool: Apply Table Formatting**: Apply colorful formatting to existing data range.
+  - **Arguments**:
+    - `filepath` - Path to the Excel workbook.
+    - `sheetName` - Name of the sheet.
+    - `tableRange` - Table range (e.g., A1:D10).
+    - `colorTheme` - Color theme: `blue`, `green`, `orange`.
+    - `alternatingRows` - Whether to enable alternating row colors.
+
+- **Tool: Apply Conditional Formatting**: Highlight cells based on values or conditions.
+  - **Arguments**:
+    - `filepath` - Path to the Excel workbook.
+    - `sheetName` - Name of the sheet.
+    - `cellRange` - Cell range to apply formatting (e.g., A1:D10).
+    - `conditionType` - Condition type: `greater_than`, `less_than`, `equal_to`, `between`.
+    - `conditionValue` - Value(s) for condition (comma-separated for 'between').
+    - `highlightColor` - Highlight color: `red`, `green`, `yellow`, `blue`.
+
+- **Tool: Apply Custom Borders**: Apply custom border styles and colors to table ranges.
+  - **Arguments**:
+    - `filepath` - Path to the Excel workbook.
+    - `sheetName` - Name of the sheet.
+    - `cellRange` - Cell range (e.g., A1:D10).
+    - `borderStyle` - Border style: `thin`, `medium`, `thick`, `double`.
+    - `borderColor` - Border color: `black`, `blue`, `red`, `green`.
+
+#### Color Themes
+
+The server supports three predefined color themes for table formatting:
+
+1. **Blue Theme**:
+   - Header: Professional blue (#4472C4) with white text
+   - Alternating rows: Light blue (#D9E1F2) and white
+   - Borders: Blue (#4472C4)
+
+2. **Green Theme**:
+   - Header: Professional green (#70AD47) with white text
+   - Alternating rows: Light green (#E2EFDA) and white
+   - Borders: Green (#70AD47)
+
+3. **Orange Theme**:
+   - Header: Vibrant orange (#FFC000) with black text
+   - Alternating rows: Light orange (#FFF2CC) and white
+   - Borders: Orange (#FFC000)
+
+#### Formatting Examples
+
+**Create a formatted table with blue theme and alternating rows:**
+```
+Table Data: "Name,Age,Department;John,30,IT;Jane,25,HR;Bob,35,Finance"
+Theme: "blue"
+Alternating Rows: true
+```
+
+**Apply conditional formatting to highlight high values:**
+```
+Cell Range: "B2:B10"
+Condition: "greater_than"
+Value: "50000"
+Highlight Color: "green"
+```
+
+**Apply custom thick red borders to a table:**
+```
+Cell Range: "A1:D5"
+Border Style: "thick"
+Border Color: "red"
+```
+
 ### Word Features
 
 - **Tool: Create Word Document**: Create a new Word document.
